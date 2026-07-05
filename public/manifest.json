@@ -1,0 +1,18 @@
+{
+  "name": "Novix AI",
+  "short_name": "Novix AI",
+  "description": "Next-Generation Intelligent AI Assistant",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/src/assets/images/novix_app_icon_1783185001834.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

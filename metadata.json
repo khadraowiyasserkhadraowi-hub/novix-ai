@@ -1,0 +1,6 @@
+{
+  "name": "Novix AI",
+  "description": "A modern AI assistant with intelligent chat, high-fidelity AI image generation, multilingual support, local history, and user authentication in an elegant Android-inspired interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
