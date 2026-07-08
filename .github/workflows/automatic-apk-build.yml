@@ -39,6 +39,10 @@ jobs:
       - name: Build Android App
         run: |
           cd android
+          # حذف الملفات التالفة وتوليد بيئة Gradle 8.5 نظيفة ومتوافقة تماماً
+          rm -f gradle/wrapper/gradle-wrapper.jar
+          rm -f gradlew
+          gradle wrapper --gradle-version 8.5
           chmod +x gradlew
           ./gradlew assembleRelease
 
