@@ -39,8 +39,8 @@ jobs:
       - name: Build Android App
         run: |
           cd android
-          # إصلاح وتوليد ملف gradle-wrapper.jar التالف تلقائياً
-          gradle wrapper
+          # تخصيص إصدار مستقر ومتوافق من Gradle لمنع تعارض الـ Plugins
+          gradle wrapper --gradle-version 8.5
           chmod +x gradlew
           ./gradlew assembleRelease
 
