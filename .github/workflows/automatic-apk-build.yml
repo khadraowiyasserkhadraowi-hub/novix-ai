@@ -33,5 +33,23 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Cap Sync
-      
+      - name: Clean and Recreate Android Platform
+        run: |
+          # حذف مجلد الأندرويد القديم المتعارض نهائياً لإنهاء حلقة الأخطاء
+          rm -rf android
+          # إعادة بناء منصة أندرويد نظيفة ومتوافقة من الصفر تلقائياً
+          npx cap android add
+          npx cap sync android
+
+      - name: Build Android App
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Novix-AI-APK
+          path: android/app/build/outputs/apk/release/app-release.apk
+          
