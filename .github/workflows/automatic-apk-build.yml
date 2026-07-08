@@ -27,17 +27,15 @@ jobs:
       - name: Build Web Application
         run: npm run build
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'
 
       - name: Force Clean and Recreate Android Platform
         run: |
-          # حذف المجلد التالف والقشرة الفارغة تماماً من خادم البناء
           rm -rf android
-          # إجبار كاباسيتور على بناء وتوليد ملفات الأندرويد والـ assets كاملة من الصفر
           npx cap add android
           npx cap sync android
 
