@@ -35,10 +35,9 @@ jobs:
 
       - name: Clean and Recreate Android Platform
         run: |
-          # حذف مجلد الأندرويد القديم المتعارض نهائياً لإنهاء حلقة الأخطاء
+          # حذف أي أثر للمجلد المعطوب وإعادة البناء بالصيغة الحديثة الصحيحة
           rm -rf android
-          # إعادة بناء منصة أندرويد نظيفة ومتوافقة من الصفر تلقائياً
-          npx cap android add
+          npx cap add android
           npx cap sync android
 
       - name: Build Android App
