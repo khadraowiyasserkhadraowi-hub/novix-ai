@@ -34,21 +34,4 @@ jobs:
           java-version: '17'
 
       - name: Cap Sync
-        run: npx cap sync android
-
-      - name: Build Android App
-        run: |
-          cd android
-          # حذف الملفات التالفة وتوليد بيئة Gradle 8.5 نظيفة ومتوافقة تماماً
-          rm -f gradle/wrapper/gradle-wrapper.jar
-          rm -f gradlew
-          gradle wrapper --gradle-version 8.5
-          chmod +x gradlew
-          ./gradlew assembleRelease
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Novix-AI-APK
-          path: android/app/build/outputs/apk/release/app-release.apk
-          
+      
