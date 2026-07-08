@@ -39,8 +39,6 @@ jobs:
       - name: Build Android App
         run: |
           cd android
-          # تخصيص إصدار مستقر ومتوافق من Gradle لمنع تعارض الـ Plugins
-          gradle wrapper --gradle-version 8.5
           chmod +x gradlew
           ./gradlew assembleRelease
 
