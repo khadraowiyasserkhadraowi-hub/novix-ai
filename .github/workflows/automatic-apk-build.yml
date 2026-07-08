@@ -33,11 +33,10 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Clean and Recreate Android Platform
+      - name: Sync Android Platform
         run: |
-          # حذف أي أثر للمجلد المعطوب وإعادة البناء بالصيغة الحديثة الصحيحة
-          rm -rf android
-          npx cap add android
+          # تحديث ومزامنة منصة الأندرويد مباشرة لتجنب خطأ "موجودة بالفعل"
+          npx cap update android
           npx cap sync android
 
       - name: Build Android App
