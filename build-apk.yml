@@ -1,0 +1,40 @@
+name: Build Novix AI APK
+
+on:
+  push:
+    branches:
+      - main # أو master حسب اسم الفرع الرئيسي لديك
+  workflow_dispatch: # يتيح لك تشغيل البناء يدوياً
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x' # سيقوم بجلب أحدث إصدار مستقر من فلاتر
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Novix-AI-Release-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
+          
