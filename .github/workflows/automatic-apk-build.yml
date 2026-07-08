@@ -39,6 +39,8 @@ jobs:
       - name: Build Android App
         run: |
           cd android
+          # إصلاح وتوليد ملف gradle-wrapper.jar التالف تلقائياً
+          gradle wrapper
           chmod +x gradlew
           ./gradlew assembleRelease
 
