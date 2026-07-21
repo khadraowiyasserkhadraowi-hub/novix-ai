@@ -44,13 +44,14 @@ export default function ChatInterface({
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      synthRef.current = window.speechSynthesis;
-    }
+      synthRef.current = window.speechSynthesis;  
+ }
   }, []);
 
   // Monitor scroll to show floating scroll-down button
   const handleScroll = () => {
     if (!listContainerRef.current) return;
+
     const { scrollTop, scrollHeight, clientHeight } = listContainerRef.current;
     // Show button if user has scrolled up more than 300px
     const isScrolledUp = scrollHeight - scrollTop - clientHeight > 300;
