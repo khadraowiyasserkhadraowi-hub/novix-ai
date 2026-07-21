@@ -7,7 +7,7 @@ import {
 import { translations } from '../translations';
 import { Language, Theme, Message } from '../types';
 import ReactMarkdown from 'react-markdown';
-
+import rehypeRaw from 'rehype-raw';
 interface ChatInterfaceProps {
   language: Language;
   theme: Theme;
@@ -393,8 +393,10 @@ export default function ChatInterface({
                               }
                             }}
                           >
-                            {msg.content}
-                          </ReactMarkdown>
+                         <ReactMarkdownrehypePlugins={[rehypeRaw]}>
+   {msg.content}
+          
+               </ReactMarkdown>
                           {isLastActiveAssistant && (
                             <span className="inline-block w-1.5 h-3.5 bg-indigo-400 ml-1 rounded-sm animate-pulse" />
                           )}
