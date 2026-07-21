@@ -36,7 +36,7 @@ app.post('/api/chat', async (req, res) => {
   try {
     const { messages } = req.body;
     if (!messages || !Array.isArray(messages)) {
-      return res.status(400).json({ error: 'messages array is required' });
+     return res.status(400).json({ error: 'messages array is required' });
     }
 
     const ai = getAiClient();
@@ -83,7 +83,7 @@ app.post('/api/chat', async (req, res) => {
   } catch (error: any) {
     console.error('Chat error:', error);
     if (!res.headersSent) {
-      res.status(500).json({ error: error.message || 'Error communicating with Gemini' });
+        res.status(500).json({ error: error.message || 'Error communicating with Gemini' });
     } else {
       res.end();
     }
@@ -95,7 +95,7 @@ app.post('/api/generate-image', async (req, res) => {
   try {
     const { prompt, aspectRatio = '1:1' } = req.body;
     if (!prompt) {
-      return res.status(400).json({ error: 'prompt is required' });
+     return res.status(400).json({ error: 'prompt is required' });
     }
 
     const ai = getAiClient();
