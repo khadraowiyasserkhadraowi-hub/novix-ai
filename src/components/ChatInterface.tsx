@@ -394,7 +394,7 @@ export default function ChatInterface({
                               }
                             }}
                           >
-                         <ReactMarkdownrehypePlugins={[rehypeRaw]}>
+                         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
    {msg.content}
           
                </ReactMarkdown>
