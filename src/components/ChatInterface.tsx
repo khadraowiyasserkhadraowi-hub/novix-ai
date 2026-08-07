@@ -359,51 +359,58 @@ export default function ChatInterface({
                         </div>
                       ) : (
                         <div className="markdown-body select-text">
-                          <ReactMarkdown
-                            components={{
-                              code({ className, children, ...props }) {
-                                const match = /language-(\w+)/.exec(className || '');
-                                const codeText = String(children).replace(/\n$/, '');
-                                return match ? (
-                                  <div className="my-2.5 rounded-xl overflow-hidden border border-zinc-800 bg-[#0A0A0A] text-zinc-100 font-mono text-xs shadow-lg">
-                                    <div className="flex items-center justify-between px-3.5 py-2 bg-[#121212] border-b border-zinc-800 text-[10px] font-bold text-zinc-400">
-                                      <span className="uppercase tracking-wider">{match[1]}</span>
-                                      <button
-                                        type="button"
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          navigator.clipboard.writeText(codeText);
-                                        }}
-                                        className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
-                                      >
-                                        <Copy className="w-3 h-3" />
-                                        <span>{language === 'en' ? 'Copy' : 'نسخ'}</span>
-                                      </button>
-                                    </div>
-                                    <pre className="p-3.5 overflow-x-auto scrollbar-thin text-left leading-relaxed">
-                                      <code className={className} {...props}>
-                                        {children}
-                                      </code>
-                                    </pre>
-                                  </div>
-                                ) : (
-                                  <code className="px-1.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400 font-mono text-[11px]" {...props}>
-                                    {children}
-                                  </code>
-                                );
-                              }
-                            }}
-                          >
-                         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-   {msg.content}
+  <ReactMarkdown
+    rehypePlugins={[rehypeRaw]}
+    components={{
+      code({ className, children, ...props }) {
+        const match = /language-(\w+)/.exec(className || '');
+        const codeText = String(children).replace(/\n$/, '');
+
+        return match ? (
+          <div className="my-2.5 rounded-xl overflow-hidden border border-zinc-800 bg-[#0A0A0A] text-zinc-100 font-mono text-xs shadow-lg">
+            <div className="flex items-center justify-between px-3.5 py-2 bg-[#121212] border-b border-zinc-800 text-[10px] font-bold text-zinc-400">
+              <span className="uppercase tracking-wider">{match[1]}</span>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigator.clipboard.writeText(codeText);
+                }}
+                className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
+              >
+                <Copy className="w-3 h-3" />
+                <span>{language === 'en' ? 'Copy' : 'نسخ'}</span>
+              </button>
+            </div>
+
+            <pre className="p-3.5 overflow-x-auto scrollbar-thin text-left leading-relaxed">
+              <code className={className} {...props}>
+                {children}
+              </code>
+            </pre>
+          </div>
+        ) : (
+          <code
+            className="px-1.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400 font-mono text-[11px]"
+            {...props}
+          >
+            {children}
+          </code>
+        );
+      }
+    }}
+  >
+    {msg.content}
+  </ReactMarkdown>
+
+  {isLastActiveAssistant && (
+    <span className="inline-block w-1.5 h-3.5 bg-indigo-400 ml-1 rounded-sm animate-pulse" />
+  )}
+</div>
           
-               </ReactMarkdown>
-                          {isLastActiveAssistant && (
-                            <span className="inline-block w-1.5 h-3.5 bg-indigo-400 ml-1 rounded-sm animate-pulse" />
-                          )}
-                        </div>
-                      )}
-                    </div>
+              
+                         
 
                     {/* Quick utility controls underneath model messages (copy, voice reading) */}
                     {!isUser && msg.type === 'text' && (
